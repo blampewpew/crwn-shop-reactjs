@@ -34,7 +34,8 @@ const SignUpForm = () => {
 
         // Check we have auth the user
         try {
-            const { user } = createAuthUserWithEmailAndPassword(email, password);
+            const { user } = await createAuthUserWithEmailAndPassword(email, password);
+            console.log(user);
             await createUserDocumentFromAuth(user, { displayName });
             resetFormFields();
         } catch(error) {
@@ -68,29 +69,29 @@ const SignUpForm = () => {
 
                 <FormInput
                     label="Email"
-                    type="text" 
+                    type="email" 
                     required 
                     onChange={handleChange} 
                     name="email" 
-                    value={displayName}
+                    value={email}
                 />
                 
                 <FormInput
                     label="Password"
-                    type="text" 
+                    type="password" 
                     required 
                     onChange={handleChange} 
                     name="password" 
-                    value={displayName}
+                    value={password}
                 />
 
                 <FormInput
                     label="Confirm Password"
-                    type="text" 
+                    type="password" 
                     required 
                     onChange={handleChange} 
                     name="confirmPassword" 
-                    value={displayName}
+                    value={confirmPassword}
                 />
 
                 <Button type="submit">Sign Up</Button>
